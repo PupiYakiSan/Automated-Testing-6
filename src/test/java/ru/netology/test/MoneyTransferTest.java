@@ -77,7 +77,7 @@ public class MoneyTransferTest {
 
     }
 
-   /* @Test
+    @Test
     void transferFromFirstToSecondCardInvalidAmount() {
         var firstCardInfo = getFirstCard();
         var secondCardInfo = getSecondCard();
@@ -89,6 +89,6 @@ public class MoneyTransferTest {
         error.makeTransfer(String.valueOf(amount), firstCardInfo);
         error.findErrorMessageContent("Сумма перевода превышает остаток на карте списания", "Ошибка");
 
-    }*/
+    }
 
 }
