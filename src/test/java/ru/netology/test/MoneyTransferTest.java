@@ -67,13 +67,12 @@ public class MoneyTransferTest {
     void transferFromFirstToSecondCardInvalidNumberCard() {
         var firstCardInfo = getFirstCard();
         var secondCardInfo = getSecondCard();
+        var invalidCardInfo = getInvalidCard();
         var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
         var amount = generalValidAmount(firstCardBalance);
-        dashboardPage.selectCardToTransfer(secondCardInfo);
-
-        TransferPage error = new TransferPage();
-        error.makeTransferError(String.valueOf(amount), firstCardInfo);
-        error.findErrorMessageContent("Ошибка! Произошла ошибка", "Ошибка");
+        var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
+        transferPage.makeTransfer(String.valueOf(amount), invalidCardInfo);
+        transferPage.findErrorMessageContent("Ошибка! Произошла ошибка", "Ошибка");
 
     }
 
@@ -83,11 +82,9 @@ public class MoneyTransferTest {
         var secondCardInfo = getSecondCard();
         var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
         var amount = generalInvalidAmount(firstCardBalance);
-        dashboardPage.selectCardToTransfer(secondCardInfo);
-
-        TransferPage error = new TransferPage();
-        error.makeTransfer(String.valueOf(amount), firstCardInfo);
-        error.findErrorMessageContent("Сумма перевода превышает остаток на карте списания", "Ошибка");
+        var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
+        transferPage.makeTransfer(String.valueOf(amount), firstCardInfo);
+        transferPage.findErrorMessageContent("Сумма перевода превышает остаток на карте списания", "Ошибка");
 
     }
 

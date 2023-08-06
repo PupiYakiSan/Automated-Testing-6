@@ -29,15 +29,6 @@ public class TransferPage {
         transferButton.click();
     }
 
-    public void makeTransferError(String amountToTransfer, DataHelper.CardInfo cardInfo) {
-        amountInput.setValue(amountToTransfer);
-        long first15 = (long) (Math.random() * 1000000000000000L);
-        String strFirst15 = Long.toString(first15);
-        String errorCard = "0" + strFirst15;
-        fromInput.setValue(errorCard);
-        transferButton.click();
-    }
-
     public DashboardPage makeValidTransfer(String amountToTransfer, DataHelper.CardInfo cardInfo) {
         makeTransfer(amountToTransfer, cardInfo);
         return new DashboardPage();
@@ -47,7 +38,5 @@ public class TransferPage {
         errorMessageContent.shouldHave(Condition.exactText(expectedText), Duration.ofSeconds(15)).shouldBe(Condition.visible);
         errorMessageTitle.shouldHave(Condition.exactText(title), Duration.ofSeconds(15)).shouldBe(Condition.visible);
     }
-
-
 
 }

@@ -32,6 +32,13 @@ public class DataHelper {
         return new CardInfo("5559 0000 0000 0002", "0f3f5c2a-249e-4c3d-8287-09f7a039391d");
     }
 
+    public static CardInfo getInvalidCard() {
+        long first15 = (long) (Math.random() * 1000000000000000L);
+        String strFirst15 = Long.toString(first15);
+        String errorCard = "0" + strFirst15;
+        return new CardInfo(errorCard, "00000000-0000-0000-0000-000000000000");
+    }
+
     @Value
     public static class VerificationCode {
         String code;
